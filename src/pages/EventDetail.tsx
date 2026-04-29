@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ArrowLeft, Share2, Heart, Calendar, Gift, Sparkles, Clock, Check, Copy } from "lucide-react";
-import { events } from "@/data/events";
+import { useEvents } from "@/contexts/EventsContext";
 import { useParticipation } from "@/hooks/useParticipation";
 import { useCountdown } from "@/hooks/useCountdown";
 import { toast } from "@/hooks/use-toast";
@@ -18,10 +18,11 @@ const EventDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [liked, setLiked] = useState(false);
+  const { events } = useEvents();
   const event = events.find((e) => e.id === id) ?? events[0];
 
   const { participation, hasJoined, join } = useParticipation(event.id);
-  const countdown = useCountdown(event.endAt);
+  const countdown = useCountdown(event.endDate);
 
   const isOngoing = event.status === "ongoing" && !countdown.ended;
   const isUpcoming = event.status === "upcoming";
