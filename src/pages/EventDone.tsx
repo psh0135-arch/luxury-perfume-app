@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Check, Sparkles } from "lucide-react";
 import { useEvents } from "@/contexts/EventsContext";
@@ -7,9 +8,14 @@ const EventDone = () => {
   const { id } = useParams();
   const { events } = useEvents();
   const event = events.find((e) => e.id === id) ?? events[0];
-  const { participation, join } = useParticipation(event.id);
-  const entry = participation ?? join();
-  const entryNo = entry.coupon;
+  const { participation, hasJoined, join } = useParticipation(event.id);
+
+  // 직접 URL로 들어왔을 때만 자동으로 참여 처리 (렌더 중 부작용 방지: useEffect)
+  useEffect(() => {
+    if (!hasJoined) join();
+  }, [hasJoined, join]);
+
+  const entryNo = participation?.coupon ?? "발급 중...";
 
   return (
     <div className="min-h-screen bg-background">
