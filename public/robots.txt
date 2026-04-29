@@ -12,3 +12,5 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://luxury-perfume-app.lovable.app/sitemap.xml
