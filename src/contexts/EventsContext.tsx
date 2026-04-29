@@ -46,7 +46,12 @@ const saveSeeds = (seeds: EventSeed[]) => {
 
 type EventsContextValue = {
   events: EventItem[];
+  seeds: EventSeed[];
   getEvent: (id: string) => EventItem | undefined;
+  getSeed: (id: string) => EventSeed | undefined;
+  addEvent: (seed: Omit<EventSeed, "id">) => EventSeed;
+  updateEvent: (id: string, patch: Partial<Omit<EventSeed, "id">>) => void;
+  removeEvent: (id: string) => void;
   resetToDefaults: () => void;
 };
 
@@ -71,13 +76,37 @@ export const EventsProvider = ({ children }: { children: ReactNode }) => {
 
   const events = useMemo(() => seeds.map((s) => decorate(s, now)), [seeds, now]);
 
+  const persist = (next: EventSeed[]) => {
+    saveSeeds(next);
+    setSeeds(next);
+  };
+
+  const genId = () => {
+    const used = new Set(seeds.map((s) => s.id));
+    // numeric incrementing id, fallback to random
+    let n = seeds.length + 1;
+    while (used.has(String(n))) n++;
+    return String(n);
+  };
+
   const value: EventsContextValue = {
     events,
+    seeds,
     getEvent: (id) => events.find((e) => e.id === id),
-    resetToDefaults: () => {
-      saveSeeds(defaultEventSeeds);
-      setSeeds(defaultEventSeeds);
+    getSeed: (id) => seeds.find((s) => s.id === id),
+    addEvent: (data) => {
+      const id = genId();
+      const seed: EventSeed = { ...data, id };
+      persist([...seeds, seed]);
+      return seed;
     },
+    updateEvent: (id, patch) => {
+      persist(seeds.map((s) => (s.id === id ? { ...s, ...patch, id } : s)));
+    },
+    removeEvent: (id) => {
+      persist(seeds.filter((s) => s.id !== id));
+    },
+    resetToDefaults: () => persist(defaultEventSeeds),
   };
 
   return <EventsContext.Provider value={value}>{children}</EventsContext.Provider>;
