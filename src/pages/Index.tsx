@@ -50,7 +50,7 @@ const EventCard = ({ event }: { event: EventItem }) => {
     e.preventDefault();
     e.stopPropagation();
     if (meta.disabled) return;
-    navigate(`/event/${event.id}/done`);
+    navigate(`/event/${event.id}`);
   };
 
   return (

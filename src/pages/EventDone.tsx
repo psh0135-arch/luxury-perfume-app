@@ -1,11 +1,14 @@
 import { Link, useParams } from "react-router-dom";
 import { Check, Sparkles } from "lucide-react";
 import { events } from "@/data/events";
+import { useParticipation } from "@/hooks/useParticipation";
 
 const EventDone = () => {
   const { id } = useParams();
   const event = events.find((e) => e.id === id) ?? events[0];
-  const entryNo = `PE-${new Date().getFullYear()}-${String(Math.floor(Math.random() * 9000) + 1000)}`;
+  const { participation, join } = useParticipation(event.id);
+  const entry = participation ?? join();
+  const entryNo = entry.coupon;
 
   return (
     <div className="min-h-screen bg-background">
