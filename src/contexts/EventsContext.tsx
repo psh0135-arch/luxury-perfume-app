@@ -46,7 +46,12 @@ const saveSeeds = (seeds: EventSeed[]) => {
 
 type EventsContextValue = {
   events: EventItem[];
+  seeds: EventSeed[];
   getEvent: (id: string) => EventItem | undefined;
+  getSeed: (id: string) => EventSeed | undefined;
+  addEvent: (seed: Omit<EventSeed, "id">) => EventSeed;
+  updateEvent: (id: string, patch: Partial<Omit<EventSeed, "id">>) => void;
+  removeEvent: (id: string) => void;
   resetToDefaults: () => void;
 };
 
