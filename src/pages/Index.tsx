@@ -240,10 +240,13 @@ const Index = () => {
               <Heart className="h-4 w-4" />
               <span className="text-[10px] tracking-wider">찜</span>
             </button>
-            <button className="flex min-h-[44px] flex-col items-center justify-center gap-1 px-4 text-muted-foreground transition-colors active:text-foreground">
+            <Link
+              to="/admin"
+              className="flex min-h-[44px] flex-col items-center justify-center gap-1 px-4 text-muted-foreground transition-colors active:text-foreground"
+            >
               <User className="h-4 w-4" />
               <span className="text-[10px] tracking-wider">마이</span>
-            </button>
+            </Link>
           </div>
         </nav>
       </div>
