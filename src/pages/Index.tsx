@@ -1,9 +1,11 @@
 import { useMemo, useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Heart, Sparkles, ArrowRight, User } from "lucide-react";
-import { type EventItem, type EventStatus } from "@/data/events";
+import { type EventStatus } from "@/data/events";
 import { useEvents } from "@/contexts/EventsContext";
 import { useAllParticipations } from "@/hooks/useParticipation";
+import EventCard from "@/components/EventCard";
+import StatRing from "@/components/StatRing";
 import heroImage from "@/assets/event-1.jpg";
 
 type FilterKey = "all" | EventStatus;
@@ -14,149 +16,6 @@ const FILTERS: { key: FilterKey; label: string }[] = [
   { key: "upcoming", label: "예정" },
   { key: "ended", label: "종료" },
 ];
-
-const statusMeta: Record<
-  EventStatus,
-  { label: string; badge: string; cta: string; ctaClass: string; disabled: boolean }
-> = {
-  ongoing: {
-    label: "진행 중",
-    badge: "bg-primary text-primary-foreground",
-    cta: "참여하기",
-    ctaClass:
-      "bg-primary text-primary-foreground active:scale-[0.97] shadow-[var(--shadow-soft)]",
-    disabled: false,
-  },
-  upcoming: {
-    label: "오픈 예정",
-    badge: "bg-muted text-muted-foreground",
-    cta: "오픈 예정",
-    ctaClass: "bg-secondary text-muted-foreground cursor-not-allowed",
-    disabled: true,
-  },
-  ended: {
-    label: "종료",
-    badge: "bg-foreground/80 text-background",
-    cta: "종료됨",
-    ctaClass: "bg-foreground/10 text-muted-foreground cursor-not-allowed",
-    disabled: true,
-  },
-};
-
-const EventCard = ({ event, joined }: { event: EventItem; joined: boolean }) => {
-  const navigate = useNavigate();
-  const meta = statusMeta[event.status];
-  const isEnded = event.status === "ended";
-
-  const handleJoin = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (meta.disabled) return;
-    navigate(`/event/${event.id}`);
-  };
-
-  return (
-    <Link
-      to={`/event/${event.id}`}
-      className="group block overflow-hidden rounded-2xl bg-card shadow-[var(--shadow-card)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_14px_40px_-12px_hsl(0_0%_0%/0.18)] active:scale-[0.985]"
-    >
-      <div className="relative overflow-hidden">
-        <img
-          src={event.image}
-          alt={event.title}
-          width={768}
-          height={768}
-          loading="lazy"
-          className={`h-44 w-full object-cover transition-transform duration-500 group-hover:scale-[1.04] ${isEnded ? "grayscale" : ""}`}
-        />
-        <span
-          className={`absolute left-3 top-3 inline-flex items-center rounded-full px-2.5 py-1 text-[10px] font-semibold tracking-widest ${meta.badge}`}
-        >
-          {meta.label}
-        </span>
-        <span className="absolute right-3 top-3 inline-flex items-center rounded-full bg-background/95 px-2.5 py-1 text-[11px] font-semibold text-primary backdrop-blur">
-          {event.benefit}
-        </span>
-        {joined && (
-          <span className="absolute bottom-3 right-3 inline-flex items-center gap-1 rounded-full bg-foreground/85 px-2.5 py-1 text-[10px] font-semibold tracking-widest text-background backdrop-blur">
-            <Sparkles className="h-3 w-3" />
-            참여 완료
-          </span>
-        )}
-      </div>
-
-      <div className="p-4">
-        <p className="text-[10px] font-medium tracking-[0.25em] text-muted-foreground">
-          {event.brand}
-        </p>
-        <h3 className="mt-1.5 truncate font-serif text-xl text-foreground">
-          {event.title}
-        </h3>
-        <p className="mt-1 text-[12px] text-muted-foreground">{event.period}</p>
-
-        <button
-          type="button"
-          onClick={handleJoin}
-          disabled={meta.disabled}
-          aria-disabled={meta.disabled}
-          className={`mt-4 flex h-12 min-h-[44px] w-full items-center justify-center rounded-full text-sm font-semibold tracking-wider transition-transform ${joined ? "bg-foreground text-background" : meta.ctaClass}`}
-        >
-          {joined ? "참여 완료" : meta.cta}
-        </button>
-      </div>
-    </Link>
-  );
-};
-
-const StatRing = ({
-  label,
-  value,
-  total,
-  color,
-}: {
-  label: string;
-  value: number;
-  total: number;
-  color: "primary" | "accent";
-}) => {
-  const pct = total === 0 ? 0 : Math.round((value / total) * 100);
-  const stroke = color === "primary" ? "hsl(var(--primary))" : "hsl(var(--accent))";
-  const radius = 26;
-  const circ = 2 * Math.PI * radius;
-  const offset = circ - (pct / 100) * circ;
-
-  return (
-    <div className="flex items-center gap-3">
-      <div className="relative h-16 w-16 flex-shrink-0">
-        <svg className="h-full w-full -rotate-90" viewBox="0 0 64 64">
-          <circle cx="32" cy="32" r={radius} fill="none" stroke="hsl(var(--border))" strokeWidth="5" />
-          <circle
-            cx="32"
-            cy="32"
-            r={radius}
-            fill="none"
-            stroke={stroke}
-            strokeWidth="5"
-            strokeLinecap="round"
-            strokeDasharray={circ}
-            strokeDashoffset={offset}
-            className="transition-[stroke-dashoffset] duration-700 ease-out"
-          />
-        </svg>
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span className="font-serif text-base text-foreground">{pct}%</span>
-        </div>
-      </div>
-      <div className="min-w-0">
-        <p className="text-[10px] font-medium tracking-[0.2em] text-muted-foreground">{label}</p>
-        <p className="mt-1 font-serif text-lg leading-tight text-foreground">
-          {value}
-          <span className="text-sm text-muted-foreground"> / {total}</span>
-        </p>
-      </div>
-    </div>
-  );
-};
 
 const Index = () => {
   const [filter, setFilter] = useState<FilterKey>("all");
