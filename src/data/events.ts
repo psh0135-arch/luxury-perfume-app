@@ -12,6 +12,8 @@ export type EventItem = {
   image: string;
   tag: "NEW" | "HOT" | "LIMITED";
   period: string;
+  /** ISO 종료 일시 — 남은 시간 계산용 */
+  endAt: string;
   reward: string;
   /** 카드에 노출되는 핵심 혜택 (예: 30% OFF, 5ml 증정) */
   benefit: string;
