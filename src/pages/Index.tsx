@@ -1,7 +1,8 @@
 import { useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Heart } from "lucide-react";
-import { events, type EventItem, type EventStatus } from "@/data/events";
+import { type EventItem, type EventStatus } from "@/data/events";
+import { useEvents } from "@/contexts/EventsContext";
 import heroImage from "@/assets/event-1.jpg";
 
 type FilterKey = "all" | EventStatus;
@@ -104,6 +105,7 @@ const EventCard = ({ event }: { event: EventItem }) => {
 
 const Index = () => {
   const [filter, setFilter] = useState<FilterKey>("all");
+  const { events } = useEvents();
 
   const counts = useMemo(
     () => ({
@@ -112,12 +114,12 @@ const Index = () => {
       upcoming: events.filter((e) => e.status === "upcoming").length,
       ended: events.filter((e) => e.status === "ended").length,
     }),
-    [],
+    [events],
   );
 
   const filtered = useMemo(
     () => (filter === "all" ? events : events.filter((e) => e.status === filter)),
-    [filter],
+    [filter, events],
   );
 
   return (

@@ -1,10 +1,11 @@
 import { Link, useParams } from "react-router-dom";
 import { Check, Sparkles } from "lucide-react";
-import { events } from "@/data/events";
+import { useEvents } from "@/contexts/EventsContext";
 import { useParticipation } from "@/hooks/useParticipation";
 
 const EventDone = () => {
   const { id } = useParams();
+  const { events } = useEvents();
   const event = events.find((e) => e.id === id) ?? events[0];
   const { participation, join } = useParticipation(event.id);
   const entry = participation ?? join();
