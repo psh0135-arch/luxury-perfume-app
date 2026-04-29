@@ -1,7 +1,8 @@
 import { useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Heart } from "lucide-react";
-import { events, type EventItem, type EventStatus } from "@/data/events";
+import { type EventItem, type EventStatus } from "@/data/events";
+import { useEvents } from "@/contexts/EventsContext";
 import heroImage from "@/assets/event-1.jpg";
 
 type FilterKey = "all" | EventStatus;
