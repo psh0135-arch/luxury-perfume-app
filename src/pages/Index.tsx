@@ -6,6 +6,7 @@ import { useEvents } from "@/contexts/EventsContext";
 import { useAllParticipations } from "@/hooks/useParticipation";
 import EventCard from "@/components/EventCard";
 import StatRing from "@/components/StatRing";
+import { ForceFieldBackground } from "@/components/ForceFieldBackground";
 import heroImage from "@/assets/event-1.jpg";
 
 type FilterKey = "all" | EventStatus;
@@ -83,17 +84,30 @@ const Index = () => {
         <section className="px-6 animate-scale-in">
           <Link
             to={`/event/${featured.id}`}
-            className="relative block overflow-hidden rounded-2xl shadow-[var(--shadow-card)] transition-transform duration-300 active:scale-[0.99]"
+            className="relative block h-[200px] overflow-hidden rounded-2xl bg-foreground shadow-[var(--shadow-card)] transition-transform duration-300 active:scale-[0.99]"
           >
+            {/* Hidden image preserves SEO + alt text */}
             <img
               src={heroImage}
               alt="이주의 향수 이벤트"
               width={768}
               height={768}
-              className="h-[200px] w-full object-cover"
+              className="sr-only"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-foreground/75 via-foreground/15 to-transparent" />
-            <div className="absolute inset-x-0 bottom-0 p-5 text-background">
+            {/* Interactive particle background */}
+            <ForceFieldBackground
+              imageUrl={heroImage}
+              hue={270}
+              saturation={55}
+              spacing={9}
+              density={0.55}
+              minStroke={1.2}
+              maxStroke={4.5}
+              magnifierRadius={130}
+              forceStrength={7}
+            />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/25 to-transparent" />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 p-5 text-background">
               <span className="inline-block rounded-full bg-accent px-2.5 py-1 text-[10px] font-semibold tracking-widest text-accent-foreground">
                 THIS WEEK
               </span>
