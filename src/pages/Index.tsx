@@ -6,6 +6,7 @@ import { useEvents } from "@/contexts/EventsContext";
 import { useAllParticipations } from "@/hooks/useParticipation";
 import EventCard from "@/components/EventCard";
 import StatRing from "@/components/StatRing";
+import { ForceFieldBackground } from "@/components/ForceFieldBackground";
 import heroImage from "@/assets/event-1.jpg";
 
 type FilterKey = "all" | EventStatus;
