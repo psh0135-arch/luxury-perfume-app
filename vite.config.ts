@@ -26,7 +26,11 @@ const sitemapPlugin = (): Plugin => ({
 });
 
 // https://vitejs.dev/config/
+// GitHub Pages는 https://<user>.github.io/<repo>/ 처럼 하위 경로에 배포되므로
+// VITE_BASE 환경변수(예: "/auto-eda-pipeline/")로 base 경로를 지정합니다.
+// 로컬/Lovable 호스팅에서는 그대로 "/" 를 사용합니다.
 export default defineConfig(({ mode }) => ({
+  base: process.env.VITE_BASE ?? "/",
   server: {
     host: "::",
     port: 8080,
