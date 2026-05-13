@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <title>Perfume Event</title>
+    <script>
+      // GitHub Pages SPA 폴백
+      // 사용자가 /auto-eda-pipeline/event/123 같은 딥링크로 진입하면
+      // GitHub Pages가 404.html을 서빙하므로, 경로를 쿼리스트링으로 인코딩해
+      // index.html로 리다이렉트한 뒤 main.tsx에서 다시 복원합니다.
+      (function () {
+        var segmentCount = 1; // repo 이름이 base 경로 1단계인 경우 (예: /auto-eda-pipeline/)
+        var l = window.location;
+        l.replace(
+          l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+          l.pathname.split('/').slice(0, 1 + segmentCount).join('/') + '/?/' +
+          l.pathname.slice(1).split('/').slice(segmentCount).join('/').replace(/&/g, '~and~') +
+          (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+          l.hash
+        );
+      })();
+    </script>
+  </head>
+  <body></body>
+</html>
