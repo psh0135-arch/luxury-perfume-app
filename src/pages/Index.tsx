@@ -243,23 +243,20 @@ const Index = () => {
           </div>
         </div>
 
-        {/* Bottom nav */}
+        {/* Bottom CTA → Signature detail */}
         <nav className="border-t border-border bg-background/98 backdrop-blur">
-          <div className="mx-auto flex max-w-[420px] items-center justify-around px-6 py-2">
-            <button className="flex min-h-[44px] flex-col items-center justify-center gap-1 px-4 text-primary">
-              <Sparkles className="h-4 w-4" />
-              <span className="text-[10px] font-medium tracking-wider">이벤트</span>
-            </button>
-            <button className="flex min-h-[44px] flex-col items-center justify-center gap-1 px-4 text-muted-foreground transition-colors active:text-foreground">
-              <Heart className="h-4 w-4" />
-              <span className="text-[10px] tracking-wider">찜</span>
-            </button>
+          <div className="mx-auto max-w-[420px] px-6 py-3">
             <Link
-              to="/admin"
-              className="flex min-h-[44px] flex-col items-center justify-center gap-1 px-4 text-muted-foreground transition-colors active:text-foreground"
+              to={`/event/${featured.id}`}
+              className="flex h-14 min-h-[44px] w-full items-center justify-center gap-2 rounded-full text-sm font-semibold tracking-[0.15em] text-foreground shadow-[0_10px_30px_-12px_hsl(340_70%_70%/0.55)] transition-transform active:scale-[0.98]"
+              style={{
+                background:
+                  "linear-gradient(135deg, hsl(340 75% 82%) 0%, hsl(38 65% 70%) 55%, hsl(38 75% 60%) 100%)",
+              }}
             >
-              <User className="h-4 w-4" />
-              <span className="text-[10px] tracking-wider">마이</span>
+              <Sparkles className="h-4 w-4" />
+              시그니처 향 만나보기
+              <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </nav>
