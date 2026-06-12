@@ -81,10 +81,9 @@ const Index = () => {
           <button
             onClick={showOngoing}
             disabled={counts.ongoing === 0}
-            className="mt-5 inline-flex h-11 min-h-[44px] items-center gap-2 rounded-full px-5 text-sm font-semibold tracking-wider text-white shadow-[0_10px_30px_-12px_hsl(330_85%_65%/0.6)] transition-transform active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
+            className="mt-5 inline-flex h-11 min-h-[44px] items-center gap-2 rounded-full px-5 text-sm font-semibold tracking-wider text-white shadow-[0_10px_30px_-12px_hsl(350_50%_24%/0.45)] transition-transform active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
             style={{
-              background:
-                "linear-gradient(135deg, hsl(340 90% 75%) 0%, hsl(330 85% 62%) 55%, hsl(320 75% 50%) 100%)",
+              background: "#5B1F2A",
             }}
           >
             진행 중 이벤트 보기
@@ -248,10 +247,9 @@ const Index = () => {
               href="https://psh0135-arch.github.io/Perfume-Web"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-14 min-h-[44px] w-full items-center justify-center gap-2 rounded-full text-sm font-semibold tracking-[0.15em] text-foreground shadow-[0_10px_30px_-12px_hsl(340_70%_70%/0.55)] transition-transform active:scale-[0.98]"
+              className="flex h-14 min-h-[44px] w-full items-center justify-center gap-2 rounded-full text-sm font-semibold tracking-[0.15em] text-white shadow-[0_10px_30px_-12px_hsl(350_50%_24%/0.45)] transition-transform active:scale-[0.98]"
               style={{
-                background:
-                  "linear-gradient(135deg, hsl(340 75% 82%) 0%, hsl(38 65% 70%) 55%, hsl(38 75% 60%) 100%)",
+                background: "#5B1F2A",
               }}
             >
               <Sparkles className="h-4 w-4" />
