@@ -239,28 +239,10 @@ const Index = () => {
         </section>
       </main>
 
-      {/* Bottom CTA + Nav */}
+      {/* Bottom CTA → Signature detail */}
       <div className="fixed inset-x-0 bottom-0 z-40">
-        {/* CTA */}
-        <div className="border-t border-border bg-background/95 px-6 pb-2 pt-3 backdrop-blur">
-          <div className="mx-auto max-w-[420px]">
-            <button
-              onClick={showOngoing}
-              disabled={counts.ongoing === 0}
-              className="flex h-12 min-h-[44px] w-full items-center justify-center gap-2 rounded-full text-sm font-semibold tracking-wider text-primary-foreground shadow-[var(--shadow-soft)] transition-transform active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
-              style={{ background: "var(--gradient-luxury)" }}
-            >
-              진행 중 이벤트 보기
-              <span className="rounded-full bg-background/20 px-2 py-0.5 text-[11px]">
-                {counts.ongoing}
-              </span>
-              <ArrowRight className="h-4 w-4" />
-            </button>
-          </div>
-        </div>
-
-        {/* Bottom CTA → Signature detail */}
         <nav className="border-t border-border bg-background/98 backdrop-blur">
+
           <div className="mx-auto max-w-[420px] px-6 py-3">
             <a
               href="https://psh0135-arch.github.io/Perfume-Web"
