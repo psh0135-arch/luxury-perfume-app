@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { Heart, Sparkles, ArrowRight, User } from "lucide-react";
+import { Heart, Sparkles, User } from "lucide-react";
 import { type EventStatus } from "@/data/events";
 import { useEvents } from "@/contexts/EventsContext";
 import { useAllParticipations } from "@/hooks/useParticipation";
