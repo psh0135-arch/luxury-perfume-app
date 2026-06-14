@@ -81,13 +81,13 @@ const Index = () => {
           <button
             onClick={showOngoing}
             disabled={counts.ongoing === 0}
-            className="mt-5 inline-flex h-11 min-h-[44px] items-center gap-2 rounded-full px-5 text-sm font-semibold tracking-wider text-foreground shadow-[0_10px_30px_-12px_hsl(40_20%_70%/0.35)] transition-transform active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
+            className="mt-5 inline-flex h-11 min-h-[44px] items-center gap-2 rounded-full px-5 text-sm font-semibold tracking-wider text-white shadow-[0_10px_30px_-12px_hsl(38_60%_45%/0.45)] transition-transform active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
             style={{
-              background: "linear-gradient(135deg, hsl(45 40% 96%) 0%, hsl(40 35% 93%) 55%, hsl(35 30% 88%) 100%)",
+              background: "linear-gradient(135deg, hsl(45 80% 65%) 0%, hsl(38 70% 55%) 55%, hsl(32 60% 45%) 100%)",
             }}
           >
             진행 중 이벤트 보기
-            <span className="rounded-full bg-black/10 px-2 py-0.5 text-[11px]">
+            <span className="rounded-full bg-white/25 px-2 py-0.5 text-[11px]">
               {counts.ongoing}
             </span>
             <ArrowRight className="h-4 w-4" />
