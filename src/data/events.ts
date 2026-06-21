@@ -123,7 +123,7 @@ export const defaultEventSeeds: EventSeed[] = [
     image: event1,
     tag: "NEW",
     startDate: "2026-06-01T00:00:00",
-    endDate: "2026-06-30T23:59:59",
+    endDate: "2026-08-31T23:59:59",
     reward: "사전 예약 시 미니어처 증정",
     benefit: "미니어처 증정",
     description: "Midnight Oud의 사전 예약 이벤트. 정식 출시 전 가장 먼저 만나보세요.",
