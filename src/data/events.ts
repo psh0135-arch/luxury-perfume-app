@@ -129,6 +129,36 @@ export const defaultEventSeeds: EventSeed[] = [
     description: "Midnight Oud의 사전 예약 이벤트. 정식 출시 전 가장 먼저 만나보세요.",
     notes: ["Top — Black Pepper", "Heart — Oud, Leather", "Base — Tobacco, Amber"],
   },
+  {
+    id: "6",
+    title: "Citrus Riviera",
+    subtitle: "여름 바다를 담은 리미티드 에디션",
+    brand: "AZUR",
+    image: event4,
+    tag: "LIMITED",
+    startDate: "2026-07-01T00:00:00",
+    endDate: "2026-07-31T23:59:59",
+    reward: "여름 에디션 50ml + 비치 파우치",
+    benefit: "여름 리미티드 증정",
+    description:
+      "AZUR의 여름 한정 컬렉션 'Citrus Riviera'. 시원한 시트러스와 바다 내음을 담아 여름날의 청량함을 선사합니다.",
+    notes: ["Top — Lemon, Sea Salt, Bergamot", "Heart — Neroli, Marine Accord", "Base — Cedar, White Musk"],
+  },
+  {
+    id: "7",
+    title: "Velvet Fig Harvest",
+    subtitle: "늦여름 무화과와 함께하는 마지막 여름 밤",
+    brand: "MAISON NOIR",
+    image: event5,
+    tag: "HOT",
+    startDate: "2026-08-01T00:00:00",
+    endDate: "2026-08-31T23:59:59",
+    reward: "무화과 컬렉션 30ml + 미니 캔들",
+    benefit: "1+1 샘플 키트",
+    description:
+      "MAISON NOIR의 시그니처 'Velvet Fig Harvest'. 달콤하면서도 깊이 있는 무화과 향으로 여름의 마무리를 우아하게 장식합니다.",
+    notes: ["Top — Fig Leaf, Green Mandarin", "Heart — Fig Milk, Iris", "Base — Sandalwood, Tonka Bean"],
+  },
 ];
 
 /** 호환용: 기존 코드에서 import { events } 사용처를 위한 export (계산된 status 포함) */
